@@ -42,4 +42,22 @@ public class PostsRepositoryTest{
         assertThat(posts.getContent()).isEqualTo(content);
 
     }
+
+    @Test
+    public void BaseTimeEntity_등록(){
+        LocalDateTime now = LocalDateTime.of(2022,8,8,0,0,0);
+        postsRepository.save(Posts.builder().
+                title("title")
+                .content("content")
+                .author("author")
+                .build());
+        List<Posts> postsList = postsRepository.findAll();
+
+        Posts posts = postsList.get(0);
+        System.out.print(">>>>>>>>> createDate="+posts.getCreatedDate()+", modifiedDate="+posts.getModifiedDate());
+
+        assertThat(posts.getCreatedDate()).isAfter(now);
+        assertThat(posts.getModifiedDate()).isAfter(now);
+
+    }
 }
