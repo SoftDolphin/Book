@@ -24,6 +24,7 @@ public class OAuthAttributes {
         this.picture = picture;
     }
 
+    //OAuth2User에서 반환하는 사용자 정보는 Map -> 하나하나를 변환 해야합니다.
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String,Object> attributes){
         return ofGoogle(userNameAttributeName, attributes);
     }
@@ -36,6 +37,10 @@ public class OAuthAttributes {
                 .nameAttributeKey(userNameAttributeName)
                 .build();
     }
+    //User 엔티티 생성
+    //OAuthAttributes에서 엔티티를 생성 하는 시점 처음 가입
+    //가입 -> 기본권한 GUEST
+    //OAuthAttributes 클래스 생성이 끝나면 SessionUser 클래스를 생성
     public User toEntity(){
         return User.builder()
                 .name(name)

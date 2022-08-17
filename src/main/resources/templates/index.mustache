@@ -6,12 +6,13 @@
             <div class="col-md-6">
                 <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
 
-                {{#userName1}}
+                {{#userName1}} <!-- if -->
                     Logged in as: <span id="user">{{userName1}}</span>
                     <a href="/logout" class="btn btn-info active" role="button">Logout</a>
                 {{/userName1}}
-                {{^userName1}}
+                {{^userName1}}<!-- else -->
                     <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                <!-- 스프링 시큐리티에서 기본적으로 제공하는 URL -->
                 {{/userName1}}
             </div>
         </div>
